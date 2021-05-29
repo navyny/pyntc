@@ -1,0 +1,39 @@
+#Using output from interfaces
+
+output123=device234.interfaces
+print(json.dumps)
+
+
+######LONGER-WAY-OF-DOING-BACKUPS:
+
+device234.open()
+print("FETCH BACkUP")
+output123= device234.running_config.     #this is a built in command
+HOST="192.168.1.2"
+
+custompatch = "D:\\customerxyz\\new_nbackup_pyntc_"
+saveoutput123 = open(custompath + HOST + ".txt", "w")
+
+saveoutput123.write(output123)
+print(output123)
+
+saveoutput123.close()
+device234.close()
+
+
+######QUICKER WAY OF DOING BACKUPS using a builtin command:
+device234.open()
+print("FETCH BACkUP")
+output123= device234.backup_running_config(""D:\\customerxyz\file-name.txt")
+
+###COPY BACKUPS 
+device234.open()
+print("FETCH BACkUP")
+output123= device234.file_copy("file-name.txt")
+device234.close()
+
+######.save()   #will work as equivalent of #wr mem
+device234.open()
+output123= device234.config("logging host 1.1.1.1")
+device234.save("new-backup.cfg")
+device234.close()
