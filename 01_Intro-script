@@ -1,0 +1,24 @@
+# import pyntc library
+
+from pyntc import ntc_device as NTC
+ios123 = NTC(host="192.168.1.2" , user="admin" , password="cisco", device_type="cisco_ios_ssh", secrets="cisco").     #this is given in a set format
+ios123.open()             #initializing SSH connection..NOTE we dont define **ios123 because we did not define it as dictionary like in other modules
+                          #ios123 =ConnectHandler(**ios123) [OR]
+                          #ios123=ConnectHandler(ios123.key1, ios123.key2)  
+output123=ios123.facts()  #facts will collect FQDN, iterfaces, ... 
+print (output123)
+print(json.dumps(output123, indent=4))
+
+#.facts(). function may have been deprecated 
+
+#---------------------
+
+output123=ios123.config("logging host 10.10.10.1")
+
+
+
+
+ios123 ---> can be defined as a dictionary{} or a set()
+If we use a dictionary....we need to depackage it using ConnectHandler(**ios123)
+If we use a set...since values are pre-assigned....ios123.open() can be used....
+Dictionary /Set should work.
